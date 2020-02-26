@@ -100,7 +100,7 @@
     "react-hot-loader": "~4.12.18",
     "sass-loader": "~8.0.2",
     "sass-resources-loader": "~2.0.1",
-    "serialize-javascript": "~3.0.0",
+    "serialize-javascript": "~2.1.1",
     "sinon": "~7.5.0",
     "style-loader": "~1.0.0",
     "terser-webpack-plugin": "~2.3.5",
