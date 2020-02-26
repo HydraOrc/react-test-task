@@ -1,0 +1,66 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": { "version": 3 },
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "defaults":"./defaults",
+          "libs":"./libs",
+          "number":"./libs/number",
+          "object":"./libs/object",
+          "random":"./libs/random",
+          "role":"./libs/role",
+          "app": "./client/app",
+          "brackets": "./client/brackets",
+          "components": "./client/components",
+          "helpers": "./client/helpers",
+          "modules": "./client/modules",
+          "pages": "./client/pages",
+          "reducers": "./client/reducers",
+          "routes": "./client/routes",
+          "store": "./client/store",
+          "upload": "./client/upload",
+          "collections": "./server/collections"
+        }
+      }
+    ],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ],
+  "env": {
+    "production": {
+      "only": ["client", "server", "libs"],
+      "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        [
+          "@babel/plugin-proposal-decorators",
+          {
+            "legacy": true
+          }
+        ],
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types"
+      ]
+    }
+  }
+}

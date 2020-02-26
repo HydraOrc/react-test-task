@@ -1,0 +1,147 @@
+{
+  "name": "react-test-task",
+  "version": "2.0.0",
+  "description": "react-test-task",
+  "author": "Hydra",
+  "engines": {
+    "node": ">=12.13.0",
+    "npm": ">=6.12.0"
+  },
+  "main": "./server/index.js",
+  "scripts": {
+    "prebuild": "npm run build:clean",
+    "build": "cross-env BABEL_ENV=production NODE_ENV=production node node_modules/webpack/bin/webpack.js --mode=production --color -p --progress && cross-env BABEL_ENV=production NODE_ENV=production node node_modules/webpack/bin/webpack.js --config webpack.prod.babel.js --mode=production --color -p --progress",
+    "build:clean": "rimraf ./app",
+    "deploy": "node cli deploy",
+    "start": "webpack --mode=development --watch",
+    "start:prod": "cross-env NODE_ENV=production node server",
+    "precommit": "lint-staged",
+    "lint:eslint": "eslint ./client ./server ./libs ./defaults --fix",
+    "pretest": "npm run test:clean",
+    "test:clean": "rimraf ./coverage",
+    "test": "cross-env NODE_ENV=test node ./node_modules/jest-cli/bin/jest --coverage --coverageDirectory ./coverage",
+    "test:watch": "cross-env NODE_ENV=test node ./node_modules/jest-cli/bin/jest --watch"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "chalk": "~2.4.2",
+    "classnames": "~2.2.6",
+    "compression": "~1.7.4",
+    "core-js": "~3.3.3",
+    "express": "~4.17.1",
+    "express-ws": "~4.0.0",
+    "helmet": "~3.21.2",
+    "hpp": "0.2.2",
+    "immer": "~5.3.6",
+    "immutable": "~4.0.0-rc.12",
+    "ip": "1.1.5",
+    "lodash": "~4.17.15",
+    "minimist": "~1.2.0",
+    "react": "~16.12.0",
+    "react-dom": "~16.12.0",
+    "react-redux": "~7.1.3",
+    "redux": "~4.0.5",
+    "redux-immer": "~1.0.4",
+    "reselect": "~4.0.0",
+    "victory": "~34.1.1"
+  },
+  "devDependencies": {
+    "archiver": "~3.0.0",
+    "@babel/core": "~7.6.4",
+    "@babel/plugin-proposal-class-properties": "~7.5.5",
+    "@babel/plugin-proposal-decorators": "~7.6.0",
+    "@babel/plugin-syntax-dynamic-import": "~7.2.0",
+    "@babel/preset-env": "~7.6.3",
+    "@babel/preset-react": "~7.6.3",
+    "babel-eslint": "~10.0.3",
+    "babel-jest": "~24.9.0",
+    "babel-loader": "~8.0.6",
+    "babel-plugin-module-resolver": "~3.2.0",
+    "babel-plugin-transform-react-constant-elements": "6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "~0.4.24",
+    "babel-preset-react-hmre": "1.1.1",
+    "circular-dependency-plugin": "~5.2.0",
+    "cjson": "~0.5.0",
+    "colors": "~1.3.3",
+    "cross-env": "~6.0.3",
+    "cross-spawn": "~6.0.5",
+    "css-loader": "~3.4.2",
+    "dotenv": "~8.2.0",
+    "enzyme": "~3.10.0",
+    "enzyme-adapter-react-16": "~1.14.0",
+    "enzyme-adapter-utils": "~1.12.1",
+    "eslint": "~6.5.1",
+    "eslint-config-airbnb": "~18.0.1",
+    "eslint-import-resolver-babel-module": "~5.1.0",
+    "eslint-plugin-import": "~2.18.2",
+    "eslint-plugin-jsx-a11y": "~6.2.3",
+    "eslint-plugin-react": "~7.16.0",
+    "eslint-plugin-react-hooks": "~2.3.0",
+    "eventsource-polyfill": "0.9.6",
+    "extract-css-chunks-webpack-plugin": "~4.7.4",
+    "fs-extra": "~8.0.1",
+    "handlebars": "~4.5.3",
+    "html-webpack-plugin": "3.2.0",
+    "identity-obj-proxy": "3.0.0",
+    "jest-cli": "~24.9.0",
+    "json-loader": "~0.5.4",
+    "minimatch": "~3.0.3",
+    "nodemon-webpack-plugin": "~4.2.2",
+    "node-sass": "~4.13.1",
+    "optimize-css-assets-webpack-plugin": "~5.0.3",
+    "postcss": "~7.0.26",
+    "postcss-import": "~12.0.1",
+    "postcss-loader": "3.0.0",
+    "react-hot-loader": "~4.12.18",
+    "sass-loader": "~8.0.2",
+    "sass-resources-loader": "~2.0.1",
+    "sinon": "~7.5.0",
+    "style-loader": "~1.0.0",
+    "terser-webpack-plugin": "~2.3.1",
+    "webpack": "~4.41.2",
+    "webpack-cli": "~3.3.9",
+    "webpack-dev-middleware": "~3.7.2",
+    "webpack-hot-middleware": "~2.25.0",
+    "webpack-node-externals": "1.7.2",
+    "webpack-shell-plugin": "~0.5.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "client/**/*.{js,jsx}",
+      "libs/**/*.{js,jsx}",
+      "!client/app/index.js",
+      "!client/index.js",
+      "!client/store.js"
+    ],
+    "moduleDirectories": [
+      "<rootDir>/node_modules"
+    ],
+    "moduleNameMapper": {
+      ".*\\.css$": "identity-obj-proxy",
+      "^defaults$": "<rootDir>/defaults",
+      "^libs$": "<rootDir>/libs",
+      "^client/(.*)": "<rootDir>/client/$1",
+      "^server/(.*)": "<rootDir>/server/$1",
+      "^components/(.*)": "<rootDir>/client/components/$1"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/testBundler.js"
+    ],
+    "testRegex": "tests/.*\\.test\\.js$",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  }
+}

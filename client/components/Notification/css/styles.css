@@ -1,0 +1,38 @@
+.notification {
+  min-width: 220px;
+  max-width: 280px;
+  min-height: 64px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #4cd964;
+  font-size: 16px;
+  letter-spacing: 0.16px;
+  text-align: left;
+  background: #fff;
+  box-shadow: 5px 9px 15px rgba(0, 0, 0, .05);
+  border-radius : 12px;
+  z-index: 1;
+
+  &.err {
+    & .icon {
+      background-image: url('/img/err.svg');
+    }
+  }
+}
+
+.icon {
+  min-width: 21px;
+  min-height: 21px;
+  margin-right: 25px;
+  background: no-repeat center / contain;
+  background-image: url('/img/success.svg');
+}
+
+.text {
+  min-width: 90px;
+}
